@@ -1,14 +1,11 @@
 <script>
-	import Menu from '$lib/Menu.svelte';
+	import Menu from '$lib/menu/Menu.svelte';
 	import '../app.css';
-
 </script>
 
 <Menu />
 
-<main>
-	<slot />
-</main>
+<slot />
 
 <style>
 </style>

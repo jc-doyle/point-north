@@ -1,65 +1,100 @@
 <script>
-	import { spring } from 'svelte/motion';
+	import { spring, tweened } from 'svelte/motion';
+	import { isOpen } from './store.js';
+	import logo from '$lib/menu/logo.svg';
+	import MenuItems from './MenuItems.svelte';
+	import Hamburger from './Hamburger.svelte';
+	import { cubicIn } from 'svelte/easing';
 
-	export let open = false;
-	let menuSpring = spring(200, { stiffness: 0.05, damping: 0.25 });
+	const menuHeight = 11;
+	const menuOpacity = 80;
+	let menuSpring = spring(menuHeight, { stiffness: 0.05, damping: 0.3 });
+	let menuTween = spring(menuOpacity, { stiffness: 0.2, damping: 0.9 });
 
 	function updateMenu() {
-		if (!open) {
-			menuSpring.set(window.innerHeight);
-			open = true;
+		if (!$isOpen) {
+			/* Open the Menu */
+			isOpen.set(true);
+			menuSpring.set(94);
+			menuTween.set(100);
 		} else {
-			menuSpring.set(200);
-			open = false;
+			/* Close the Menu */
+			isOpen.set(false);
+			setTimeout(async () => {
+				menuSpring.set(menuHeight);
+			}, 500);
+			setTimeout(async () => {
+				menuTween.set(menuOpacity);
+			}, 1000);
 		}
 	}
 </script>
 
 <div class="menu">
-	<div class:open class="menu-items">
-		<h2>About</h2>
-		<h2>About</h2>
-		<h2>About</h2>
+	<div class="menu-header">
+		<img class="menu-logo" src={logo} alt="Point North" />
+		<div class="hamburger" on:click={updateMenu}>
+			<Hamburger />
+		</div>
 	</div>
-	<svg>
-		<rect
-			on:drag={updateMenu}
-			on:click={updateMenu}
-			x="0"
-			y="0"
-			width="100%"
-			height={$menuSpring}
-		/>
+	<svg class="menu-bar">
+		<rect x="0" y="0" width="100vw" height="{$menuSpring}vh" style:opacity="{$menuTween}%" />
 	</svg>
+	{#if $isOpen}
+		<div class="menu-items" on:click={updateMenu}>
+			<MenuItems />
+		</div>
+	{/if}
 </div>
 
 <style>
 	.menu {
-		width: 100vw;
 		height: 100vh;
-	}
-	svg {
-		position: fixed;
-		width: 100vw;
-		height: 100vh;
-	}
-	rect {
-		fill: lightgray;
-		opacity: 80%;
-	}
-	.menu-items {
-    opacity: 0%;
-		position: fixed;
-		display: flex;
-		flex-direction: column;
-		left: 50%;
-		top: 50%;
-		transform: translate(-50%, -50%);
-		z-index: 1;
+		position: absolute;
 	}
 
-	.open {
-		color: blue;
-    opacity: 100%;
+	.menu-header {
+		position: fixed;
+		justify-content: space-between;
+		z-index: 1;
+		height: 11vh;
+		width: 80vw;
+		right: 10vw;
+		top: 0;
+		display: flex;
+		align-items: center;
+	}
+
+	.menu-bar {
+		position: fixed;
+		top: 0;
+		width: 100%;
+		height: 100vh;
+	}
+
+	rect {
+		fill: #eee;
+	}
+
+	.hamburger {
+		z-index: inherit;
+		width: 2.8vh;
+		height: 2.8vh;
+	}
+
+	.menu-logo {
+		z-index: inherit;
+		width: 18vh;
+	}
+
+	.menu-items {
+		z-index: 1;
+		position: fixed;
+	}
+
+	@media (min-width: 600px) {
+		.menu-logo {
+			left: 25%;
+		}
 	}
 </style>
