@@ -4,7 +4,6 @@
 </script>
 
 <Menu />
-
 <slot />
 
 <style>

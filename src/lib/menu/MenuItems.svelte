@@ -38,7 +38,7 @@
 				y="{$hoverSpringHeight}%"
 				width="{$hoverSpringWidth}%"
 				height="4.5%"
-				fill="#DFDFDF"
+				fill="var(--grey)"
 			/>
 			<rect
 				class="dot"
@@ -46,7 +46,7 @@
 				y="{2 + $hoverSpringHeight}%"
 				width="3px"
 				height="3px"
-				fill="#444"
+				fill="var(--black)"
 			/>
 		</svg>
 	</div>

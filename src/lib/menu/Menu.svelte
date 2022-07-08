@@ -8,7 +8,7 @@
 	import { fade } from 'svelte/transition';
 
 	const menuHeight = 11;
-	const menuOpacity = 80;
+	const menuOpacity = 60;
 	let menuSpring = spring(menuHeight, { stiffness: 0.05, damping: 0.3 });
 	let menuTween = spring(menuOpacity, { stiffness: 0.2, damping: 0.9 });
 
@@ -16,8 +16,8 @@
 		if (!$isOpen) {
 			/* Open the Menu */
 			isOpen.set(true);
-			menuSpring.set(94);
-			menuTween.set(90);
+			menuSpring.set(100);
+			menuTween.set(100);
 		} else {
 			/* Close the Menu */
 			setTimeout(async () => {
