@@ -1,11 +1,11 @@
 <script>
-  import { page } from '$app/stores'
-	import { isOpen, hoverSpring } from './store.js';
+	import { page } from '$app/stores';
+	import { isOpen, hoverSpringHeight, hoverSpringWidth } from './store.js';
 	import MenuLink from './MenuLink.svelte';
 	const pages = ['cawdor', 'talbragar', 'jameson', 'about'];
 
-	function setHeight(i) {
-    const base = 20;
+	function getHeight(i) {
+		const base = 20;
 		const between = 8;
 		const bottom = 15;
 		if (i != 3) {
@@ -15,29 +15,44 @@
 		}
 	}
 
-  function currentPageHeight(id) {
-    if (id) {
-      return setHeight(pages.indexOf(id))
-    } else {
-      return setHeight(pages.indexOf('about'))
-    }
-  }
+	function currentPageHeight(id) {
+		if (id) {
+			return getHeight(pages.indexOf(id));
+		} else {
+			return getHeight(pages.indexOf('about'));
+		}
+	}
 
-  hoverSpring.set(currentPageHeight($page.params.id))
+	hoverSpringHeight.set(currentPageHeight($page.params.id));
 
-  let open
+	let open;
 	isOpen.subscribe((o) => (open = o));
 </script>
 
 <div class="menu-items">
 	<div class="indicator">
-		<svg width="2vw" height="100vh">
-			<line y1="{$hoverSpring}vh" y2="{$hoverSpring+4.5}vh" stroke="black"  />
+		<svg width="100%" height="100%">
+			<rect
+				class="rectangle"
+				x="0"
+				y="{$hoverSpringHeight}%"
+				width="{$hoverSpringWidth}%"
+				height="4.5%"
+				fill="#DFDFDF"
+			/>
+			<rect
+				class="dot"
+				x="1%"
+				y="{2 + $hoverSpringHeight}%"
+				width="3px"
+				height="3px"
+				fill="#444"
+			/>
 		</svg>
 	</div>
 	<div class="menu-links">
 		{#each pages as item, i}
-			<MenuLink {item} height={setHeight(i)} />
+			<MenuLink {item} height={getHeight(i)} />
 		{/each}
 	</div>
 </div>
@@ -48,20 +63,24 @@
 		width: inherit;
 	}
 	.indicator {
-    left: 42vw;
-    top: 0;
-    position: fixed;
+		left: 31vw;
+		top: 0;
+		position: fixed;
 	}
-  line {
-    opacity: 0;
-    stroke: grey;
+  svg {
+    height: 100vh;
+    width: 100vw;
   }
+	.rectangle {
+		opacity: 0;
+	}
 
 	@media (min-width: 600px) {
-		line {
-			opacity: 100%;
-      stroke-width: 3;
+		.rectangle {
+			opacity: 60%;
+		}
+		.indicator {
+			left: 41vw;
 		}
 	}
-  
 </style>

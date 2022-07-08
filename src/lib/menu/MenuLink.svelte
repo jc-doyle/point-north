@@ -1,5 +1,5 @@
 <script>
-	import { hoverSpring } from './store.js';
+	import { hoverSpringHeight, hoverSpringWidth } from './store.js';
 	export let item;
 	export let height;
 
@@ -9,17 +9,22 @@
 	const itemRoute = item.toLowerCase();
 
 	function hoverEnter() {
-		hoverSpring.set(height);
+		hoverSpringHeight.set(height);
+		hoverSpringWidth.set(Math.random() * 2 + 8);
 	}
 
+	function mouseDown() {
+		hoverSpringWidth.set(Math.random() * 2 + 12);
+	}
+
+	function mouseUp() {
+		setTimeout(async () => {
+			hoverSpringWidth.set(Math.random() * 2 + 3);
+		}, 400);
+	}
 </script>
 
-<div class="menu-link" on:mouseenter={hoverEnter}>
-	<svg width="50" height="50">
-		<clipPath id="clip">
-			<rect class="masker" x="0" y="0" width="100" height="100" fill="#444" />
-		</clipPath>
-	</svg>
+<div class="menu-link" on:mouseenter={hoverEnter} on:mousedown={mouseDown} on:mouseup={mouseUp}>
 	{#if item == 'about'}
 		<a href="/{itemRoute}" style:top="{height}vh">{capitalize(item)}</a>
 	{:else}
@@ -33,6 +38,7 @@
 		height: 100%;
 	}
 	a {
+		color: #3d3e55;
 		font-family: 'Poiret One';
 		font-size: 4vh;
 		position: fixed;
@@ -40,12 +46,14 @@
 		outline: none;
 		box-shadow: none;
 		left: 35vw;
-    stroke-width: 3;
+    text-shadow: 3px black;
 	}
-
+	a:hover {
+		color: black;
+	}
 	@media (min-width: 600px) {
 		a {
-		  left: 43vw;
+			left: 43vw;
 		}
-  }
+	}
 </style>

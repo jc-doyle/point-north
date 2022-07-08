@@ -13,22 +13,35 @@
 </script>
 
 <script>
-	import { fly } from 'svelte/transition';
-
+	import { draw } from 'svelte/transition';
+	import SvgHeader from '../../lib/svg/SvgHeader.svelte';
 	export let project;
-	$: p = project['project'];
 </script>
 
-{#key p}
-	<div class="content" >
-		<h1>{p.title}</h1>
-		<h1>{p.date}</h1>
-		<p>{p.intro}</p>
+{#key project}
+	<div class="content">
+		<div class="header">
+			<svg width="100%" height="100%" viewBox="0 0 1055 617">
+				<path style="stroke: #000; fill: none;" d={project.header} />
+			</svg>
+			<h1>{project.title}</h1>
+			<h1>{project.date}</h1>
+		</div>
+		<div class="intro">
+			<p>{project.intro}</p>
+		</div>
 	</div>
 {/key}
 
 <style>
-  .content {
-    z-index: -1;
+	.content {
+		z-index: -1;
+	}
+	.header {
+		height: 30vh;
+	}
+  path {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 800;
   }
 </style>

@@ -4,7 +4,8 @@
 	import logo from '$lib/menu/logo.svg';
 	import MenuItems from './MenuItems.svelte';
 	import Hamburger from './Hamburger.svelte';
-	import { cubicIn } from 'svelte/easing';
+	import { cubicInOut } from 'svelte/easing';
+	import { fade } from 'svelte/transition';
 
 	const menuHeight = 11;
 	const menuOpacity = 80;
@@ -16,13 +17,13 @@
 			/* Open the Menu */
 			isOpen.set(true);
 			menuSpring.set(94);
-			menuTween.set(100);
+			menuTween.set(90);
 		} else {
 			/* Close the Menu */
-			isOpen.set(false);
 			setTimeout(async () => {
 				menuSpring.set(menuHeight);
-			}, 500);
+				isOpen.set(false);
+			}, 600);
 			setTimeout(async () => {
 				menuTween.set(menuOpacity);
 			}, 1000);
@@ -38,10 +39,15 @@
 		</div>
 	</div>
 	<svg class="menu-bar">
-		<rect x="0" y="0" width="100vw" height="{$menuSpring}vh" style:opacity="{$menuTween}%" />
+		<rect x="0" y="0" width="100%" height="{$menuSpring}%" style:opacity="{$menuTween}%" />
 	</svg>
 	{#if $isOpen}
-		<div class="menu-items" on:click={updateMenu}>
+		<div
+			in:fade={{ duration: 200, easing: cubicInOut }}
+			out:fade={{ duration: 50, easing: cubicInOut }}
+			class="menu-items"
+			on:click={updateMenu}
+		>
 			<MenuItems />
 		</div>
 	{/if}
