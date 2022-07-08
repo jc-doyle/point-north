@@ -14,55 +14,43 @@
 
 <script>
 	export let project;
+	import PathSvg from '$lib/svg/PathSvg.svelte';
+	import ImageSpring from '$lib/image/ImageSpring.svelte';
 	import Image from '$lib/image/Image.svelte';
 </script>
 
 {#key project}
-	<div class="content">
-		<section class="header">
-			<div class="header-svg">
-				<svg width="100%" height="100%" viewBox="0 0 1600 800">
-					<path class="header-path" style="stroke: var(--grey); fill: none;" d={project.header} />
-					<rect class="header-rect" x="0" y="0" height="200%" width="200%" fill="blue" />
-				</svg>
-			</div>
-			<div class="header-text">
-				<h1>{project.title}</h1>
-				<h2>{project.date}</h2>
-				<h3>{project.location}</h3>
-			</div>
-		</section>
-		<section class="intro">
-			<p>{project.intro}</p>
-		</section>
-		{#each project.imagecount as _, i}
-			<Image name={project.name} {i} />
-		{/each}
-	</div>
+	<PathSvg data={project.header} />
+	<section class="header">
+		<div class="header-text">
+			<h1>{project.title}</h1>
+			<h2>{project.date}</h2>
+			<h3>{project.location}</h3>
+		</div>
+	</section>
+	<section class="intro">
+		<p>{project.intro}</p>
+	</section>
+	<section class="image-container">
+		<div class="images">
+			{#each project.imagecount as _, i}
+					<Image name={project.name} {i} />
+			{/each}
+		</div>
+		<ImageSpring />
+	</section>
 {/key}
 
 <style>
 	section {
 		z-index: -1;
+		display: block;
 	}
-	.content {
-		display: flex;
-		flex-direction: column;
-	}
+
 	.header {
-		height: 45vh;
+		height: 38vh;
 		position: relative;
-	}
-
-	.intro {
-		background-color: var(--blue);
-	}
-
-	.header-svg {
-		height: 45vh;
-		position: relative;
-		overflow: hidden;
-		left: 0;
+		z-index: -2;
 	}
 
 	.header-text {
@@ -71,15 +59,8 @@
 		position: absolute;
 	}
 
-	.header-path {
-	}
-
-	.header-rect {
-		opacity: 20%;
-	}
-
-	svg {
-		position: inherit;
+	.intro {
+		background-color: var(--blue);
 	}
 
 	p {
@@ -87,12 +68,16 @@
 		height: inherit;
 		margin: 5vh 8vw;
 		color: var(--white);
-		line-height: 150%;
+		line-height: 160%;
 	}
 
-	path {
-		stroke-dasharray: 1000;
-		stroke-dashoffset: 800;
+	.image-container {
+	}
+
+	.images {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
 
 	@media (min-width: 600px) {
@@ -101,9 +86,10 @@
 		}
 		p {
 			margin: 10vh 30vw;
+			line-height: 160%;
 		}
-		svg {
-			left: 40%;
+		.header {
+			height: 66vh;
 		}
 	}
 </style>

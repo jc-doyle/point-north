@@ -1,6 +1,6 @@
 <script>
 	import { page } from '$app/stores';
-	import { isOpen, hoverSpringHeight, hoverSpringWidth } from './store.js';
+	import { isOpen, menuSpringHeight, menuSpringWidth } from './store.js';
 	import MenuLink from './MenuLink.svelte';
 	const pages = ['cawdor', 'talbragar', 'jameson', 'about'];
 
@@ -23,7 +23,7 @@
 		}
 	}
 
-	hoverSpringHeight.set(currentPageHeight($page.params.id));
+	menuSpringHeight.set(currentPageHeight($page.params.id));
 
 	let open;
 	isOpen.subscribe((o) => (open = o));
@@ -35,15 +35,15 @@
 			<rect
 				class="rectangle"
 				x="0"
-				y="{$hoverSpringHeight}%"
-				width="{$hoverSpringWidth}%"
+				y="{$menuSpringHeight}%"
+				width="{$menuSpringWidth}%"
 				height="4.5%"
 				fill="var(--grey)"
 			/>
 			<rect
 				class="dot"
 				x="1%"
-				y="{2 + $hoverSpringHeight}%"
+				y="{2 + $menuSpringHeight}%"
 				width="3px"
 				height="3px"
 				fill="var(--black)"

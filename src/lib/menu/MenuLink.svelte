@@ -1,5 +1,5 @@
 <script>
-	import { hoverSpringHeight, hoverSpringWidth } from './store.js';
+	import { menuSpringHeight, menuSpringWidth } from './store.js';
 	export let item;
 	export let height;
 
@@ -9,17 +9,17 @@
 	const itemRoute = item.toLowerCase();
 
 	function hoverEnter() {
-		hoverSpringHeight.set(height);
-		hoverSpringWidth.set(Math.random() * 2 + 8);
+		menuSpringHeight.set(height);
+		menuSpringWidth.set(Math.random() * 2 + 8);
 	}
 
 	function mouseDown() {
-		hoverSpringWidth.set(Math.random() * 2 + 12);
+		menuSpringWidth.set(Math.random() * 2 + 12);
 	}
 
 	function mouseUp() {
 		setTimeout(async () => {
-			hoverSpringWidth.set(Math.random() * 2 + 3);
+			menuSpringWidth.set(Math.random() * 2 + 3);
 		}, 400);
 	}
 </script>
