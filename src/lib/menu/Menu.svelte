@@ -8,7 +8,7 @@
 	import { fade } from 'svelte/transition';
 
 	const menuHeight = 11;
-	const menuOpacity = 40;
+	const menuOpacity = 95;
 	let menuSpring = spring(menuHeight, { stiffness: 0.05, damping: 0.3 });
 	let menuTween = spring(menuOpacity, { stiffness: 0.2, damping: 0.9 });
 
@@ -38,8 +38,8 @@
 			<Hamburger />
 		</div>
 	</div>
-	<svg class="menu-bar" height="{$menuSpring}vh">
-		<rect x="0" y="0" width="100%" height="{$menuSpring}vh" style:opacity="{$menuTween}%" />
+	<svg class="menu-bar" height="{$menuSpring}%">
+		<rect x="0" y="0" width="100%" height="100%" style:opacity="{$menuTween}%" />
 	</svg>
 	{#if $isOpen}
 		<div
@@ -57,6 +57,7 @@
 	.menu {
 		height: 100vh;
 		position: absolute;
+    z-index: 2;
 	}
 
 	.menu-header {
@@ -64,8 +65,8 @@
 		justify-content: space-between;
 		z-index: 1;
 		height: 11vh;
-		width: 80vw;
-		right: 10vw;
+		width: 90vw;
+		right: 5vw;
 		top: 0;
 		display: flex;
 		align-items: center;
@@ -78,13 +79,14 @@
 	}
 
 	rect {
-		fill: var(--grey2);
+		fill: var(--white);
 	}
 
 	.hamburger {
 		z-index: inherit;
 		width: 2.8vh;
 		height: 2.8vh;
+    padding: 2vh;
 	}
 
 	.menu-logo {

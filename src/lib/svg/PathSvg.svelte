@@ -4,13 +4,14 @@
 
 <div class="path-svg">
 	<svg class="path" width="50vw" height="60vh" viewBox="0 0 1060 680">
-		<path style="stroke: var(--grey); fill: none;" d={data} />
+		<path style="stroke: var(--blue); fill: none;" d={data} />
 	</svg>
 </div>
 
 <style>
 	.path-svg {
 		position: absolute;
+    opacity: 80%;
 		z-index: -5;
 		display: block;
 		overflow-x: clip;

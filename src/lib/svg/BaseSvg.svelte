@@ -18,7 +18,7 @@
 	@media (min-width: 600px) {
 		svg {
 			left: 0;
-			width: 39vw;
+			width: 38vw;
 		}
 	}
 </style>
