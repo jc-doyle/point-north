@@ -1,6 +1,8 @@
 <script>
+	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
-	import { isOpen, menuSpringHeight, menuSpringWidth } from './store.js';
+	import { isOpen, menuSpringWidth, menuSpringY } from './store.js';
+	import { pageColor } from '../../store.js';
 	import MenuLink from './MenuLink.svelte';
 	const pages = ['cawdor', 'talbragar', 'jameson', 'about'];
 
@@ -15,72 +17,61 @@
 		}
 	}
 
-	function currentPageHeight(id) {
-		if (id) {
-			return getHeight(pages.indexOf(id));
-		} else {
-			return getHeight(pages.indexOf('about'));
-		}
-	}
+	onMount(() => {
+    if ($page.params.id) {
+		  var elem = document.getElementById(`menu-link-${$page.params.id}`);
+    } else {
+		  var elem = document.getElementById(`menu-link-about`);
+    }
+		menuSpringY.set(elem.getBoundingClientRect().top);
+		menuSpringWidth.set(elem.getBoundingClientRect().right - elem.getBoundingClientRect().left+20);
+	});
 
-	menuSpringHeight.set(currentPageHeight($page.params.id));
-
-	let open;
-	isOpen.subscribe((o) => (open = o));
 </script>
 
 <div class="menu-items">
-	<div class="indicator">
+	<div class="menu-svg">
 		<svg width="100%" height="100%">
-			<rect
-				class="rectangle"
-				x="0"
-				y="{$menuSpringHeight}%"
-				width="{$menuSpringWidth}%"
-				height="4.5%"
-				fill="var(--grey)"
-			/>
-			<rect
-				class="dot"
-				x="1%"
-				y="{2 + $menuSpringHeight}%"
-				width="3px"
-				height="3px"
-				fill="var(--black)"
-			/>
+			<defs>
+				<clipPath id="clip">
+					<rect
+						class="rectangle"
+						x="0%"
+						y="{$menuSpringY}px"
+						width="{$menuSpringWidth}px"
+						height="4.6%"
+					/>
+				</clipPath>
+			</defs>
+			<rect width="100%" height="100%" clip-path="url(#clip)" fill="{$pageColor}"/>
+			{#each pages as item, i}
+				{#if item == 'about'}
+					<a href='/about'>
+						<MenuLink {item} height={getHeight(i)} />
+					</a>
+				{:else}
+					<a href='/projects/{item}'>
+					<MenuLink {item} height={getHeight(i)} />
+					</a>
+				{/if}
+			{/each}
 		</svg>
-	</div>
-	<div class="menu-links">
-		{#each pages as item, i}
-			<MenuLink {item} height={getHeight(i)} />
-		{/each}
 	</div>
 </div>
 
 <style>
 	.menu-items {
-		position: inherit;
+		position: fixed;
 		width: inherit;
 	}
-	.indicator {
-		left: 31vw;
-		top: 0;
-		position: fixed;
+	.menu-svg {
+		position: relative;
+    left: 40vw;
 	}
-  svg {
-    height: 100vh;
-    width: 100vw;
-  }
-	.rectangle {
-		opacity: 0;
+	svg {
+		height: 100vh;
+		width: 40vw;
 	}
-
 	@media (min-width: 600px) {
-		.rectangle {
-			opacity: 60%;
-		}
-		.indicator {
-			left: 41vw;
-		}
 	}
 </style>

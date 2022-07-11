@@ -1,5 +1,5 @@
 <script>
-	import { spring, tweened } from 'svelte/motion';
+	import { spring } from 'svelte/motion';
 	import { isOpen } from './store.js';
 	import logo from '$lib/menu/logo.svg';
 	import MenuItems from './MenuItems.svelte';
@@ -45,7 +45,6 @@
 		<div
 			in:fade={{ duration: 200, easing: cubicInOut }}
 			out:fade={{ duration: 50, easing: cubicInOut }}
-			class="menu-items"
 			on:click={updateMenu}
 		>
 			<MenuItems />

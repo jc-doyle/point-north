@@ -28,18 +28,18 @@
 	});
 </script>
 
-<div class="image-spring">
-	<svg width="100%" height="100%">
-		<rect
-			class="rectangle"
-			x="{$x}%"
-			y="{$y}px"
-			width="{$width}%"
-			height="{$height}px"
-			fill="var(--black)"
-		/>
-	</svg>
-</div>
+<svg width="100%" height="100%">
+  <defs>
+    <clipPath id="clip">
+      <rect
+        class="rectangle"
+        x="0%"
+        y="{$menuSpringY}px"
+        width="{$menuSpringWidth}%"
+        height="4.6%"
+      />
+    </clipPath>
+  </defs>
 
 <style>
 	.image-spring {

@@ -17,24 +17,22 @@
 	import PathSvg from '$lib/svg/PathSvg.svelte';
 	import ImageSpring from '$lib/image/ImageSpring.svelte';
 	import Image from '$lib/image/Image.svelte';
+	import { pageColor } from '../../store';
 </script>
 
 <div class="container">
 	{#key project}
 		<PathSvg data={project.header} />
 		<section class="header">
-			<div class="header-text">
-				<div class="title">
-					<h1>{project.title}</h1>
-					<svg>
-						<rect x="0" y="0" height="100%" width="100%" fill="blue" />
-					</svg>
-				</div>
-				<h2 class="date">{project.date}</h2>
-				<h3 class="location">{project.location}</h3>
+			<div class="title">
+				<svg>
+					<rect x="0" y="0" height="100%" width="100%" fill={$pageColor} />
+					<text x="0" y="20%" stroke="var(--white)" stroke-width="2">Hello</text>
+				</svg>
+				<h1>{project.title}</h1>
 			</div>
 		</section>
-		<section class="intro">
+		<section class="intro" style:background-color={$pageColor}>
 			<p>{project.intro}</p>
 		</section>
 		<section id="image-container" class="image-container">
@@ -61,24 +59,21 @@
 		position: relative;
 		z-index: -2;
 	}
-
-	.header-text {
-		position: absolute;
-		top: 30%;
-		left: 5%;
-	}
-
 	.title {
-    position: relative;
+		position: absolute;
+    top: 30%;
+    width: 30vw;
 	}
 
 	svg {
-    top: 0;
-    position: absolute;
+		top: 0;
+		left: 20vw;
+		position: absolute;
 	}
 
-	.intro {
-		background-color: var(--blue);
+	text {
+		font-family: 'Poiret One';
+		font-size: 10vh;
 	}
 
 	p {
