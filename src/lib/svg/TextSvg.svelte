@@ -23,15 +23,20 @@
 </script>
 
 <g>
-  <rect {x} {y} {height} width="{$width}px" fill={color} />
-  <text {id} x="0" y="70%" fill="var(--white)">{text}</text>
+  <rect x={x-5} {y} {height} width="{$width+10}px" fill={color} />
+  <text {id} x="2%" y="60%" fill="var(--white)">{text}</text>
 </g>
 
 <style>
   text {
     font-family: "Poiret One";
-    font-size: 7vw;
+    font-size: 15vw;
     text-anchor: top;
     stroke: var(--white);
   }
+@media (min-width: 600px) {
+		text {
+      font-size: 8vw;
+		}
+	}
 </style>

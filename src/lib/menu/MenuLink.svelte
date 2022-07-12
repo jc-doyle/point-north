@@ -31,7 +31,7 @@
 <style>
 	text {
 		font-family: 'Poiret One';
-		font-size: 4vh;
+		font-size: 5vh;
 	}
 	.foreground-text {
 		stroke: var(--white);

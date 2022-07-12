@@ -9,5 +9,5 @@ const colorList = [
 	{ name: 'cawdor', color: '#9D90AD' }
 ];
 
-export const pageColor = tweened(colorList[0].color, { interpolate: interpolateRgb }, 500);
+export const pageColor = tweened(colorList[0].color, { interpolate: interpolateRgb }, 100);
 export const colors = readable(colorList);

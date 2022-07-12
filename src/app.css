@@ -14,7 +14,7 @@
 body {
   margin: 0;
 	padding: 0;
-  background: var(--background);
+  background: var(--white);
 }
 
 body::before {
@@ -30,13 +30,18 @@ h1 {
 
 h2 {
   font-family: 'Poiret One', serif;
-  font-size: 6vh;
+  font-weight: 300;
+  font-size: 4vh;
   margin: 0;
+  color: var(--black)
 }
 
 h3 {
   font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 2vh;
   margin: 0;
+  color: var(--black)
 }
 
 p {
@@ -55,4 +60,19 @@ p {
 		p {
       font-size: 2.3vh;
 		}
+
+    h2 {
+      font-family: 'Poiret One', serif;
+      font-size: 4vw;
+      margin: 0;
+    }
+
+    h3 {
+      font-family: 'Raleway', sans-serif;
+      font-size: 2vh;
+      margin: 0;
+    }
+    body {
+      background: var(--background);
+    }
 	}

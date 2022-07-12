@@ -7,7 +7,7 @@
 	const pages = ['cawdor', 'talbragar', 'jameson', 'about'];
 
 	function getHeight(i) {
-		const base = 20;
+		const base = 30;
 		const between = 8;
 		const bottom = 15;
 		if (i != 3) {
@@ -18,15 +18,16 @@
 	}
 
 	onMount(() => {
-    if ($page.params.id) {
-		  var elem = document.getElementById(`menu-link-${$page.params.id}`);
-    } else {
-		  var elem = document.getElementById(`menu-link-about`);
-    }
+		if ($page.params.id) {
+			var elem = document.getElementById(`menu-link-${$page.params.id}`);
+		} else {
+			var elem = document.getElementById(`menu-link-about`);
+		}
 		menuSpringY.set(elem.getBoundingClientRect().top);
-		menuSpringWidth.set(elem.getBoundingClientRect().right - elem.getBoundingClientRect().left+20);
+		menuSpringWidth.set(
+			elem.getBoundingClientRect().right - elem.getBoundingClientRect().left + 20
+		);
 	});
-
 </script>
 
 <div class="menu-items">
@@ -39,19 +40,19 @@
 						x="0%"
 						y="{$menuSpringY}px"
 						width="{$menuSpringWidth}px"
-						height="4.6%"
+						height="5.6%"
 					/>
 				</clipPath>
 			</defs>
-			<rect width="100%" height="100%" clip-path="url(#clip)" fill="{$pageColor}"/>
+			<rect width="100%" height="100%" clip-path="url(#clip)" fill={$pageColor} />
 			{#each pages as item, i}
 				{#if item == 'about'}
-					<a href='/about'>
+					<a href="/about">
 						<MenuLink {item} height={getHeight(i)} />
 					</a>
 				{:else}
-					<a href='/projects/{item}'>
-					<MenuLink {item} height={getHeight(i)} />
+					<a href="/projects/{item}">
+						<MenuLink {item} height={getHeight(i)} />
 					</a>
 				{/if}
 			{/each}
@@ -66,12 +67,14 @@
 	}
 	.menu-svg {
 		position: relative;
-    left: 40vw;
-	}
-	svg {
+		left: 25vw;
+		width: 75vw;
 		height: 100vh;
-		width: 40vw;
 	}
 	@media (min-width: 600px) {
+		.menu-svg {
+			left: 42vw;
+			width: 20vw;
+		}
 	}
 </style>
