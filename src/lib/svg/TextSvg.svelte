@@ -1,53 +1,37 @@
 <script>
-	import { afterUpdate } from 'svelte';
-	export let id;
-	let elem;
+  import { afterUpdate, beforeUpdate, onMount } from "svelte";
+  import { spring } from "svelte/motion";
+  export let id;
+  export let text;
+  export let color;
+  let elem;
+  let width = spring(10, { stiffness: 0.05, damping: 0.8, precision: 1 });
+  let height = 0;
+  let x,
+    y = 0;
 
-	afterUpdate(() => {
-		elem = document.getElementById(`${id}`);
-		var elemRect = elem.getBoundingClientRect();
-		var height = elemRect.top - containerRect.top;
-		console.log(elem.width);
-		console.log(elem.height);
-	});
-	setSpring(() => {
-		console.log(elem.height);
-		var vw = clientWidth / 100;
-
-		if (clientWidth < 600) {
-			y.set(height - 5 * vw);
-			x.set(5);
-			width.set(90);
-			height.set(elem.height + 10 * vw);
-		} else {
-			y.set(height - 1.5 * vw);
-			x.set(29);
-			width.set(42);
-			height.set(elem.height + 3 * vw);
-		}
-	});
+  afterUpdate(() => {
+    width.set(10);
+    elem = document.getElementById(`${id}`);
+    height = elem.getBBox().height;
+    x = elem.getBBox().x;
+    y = elem.getBBox().y;
+    setTimeout(async () => {
+      width.set(elem.getBBox().width), 200;
+    });
+  });
 </script>
 
-<svg width="100%" height="100%">
-  <defs>
-    <clipPath id="clip">
-      <rect
-        class="rectangle"
-        x="0%"
-        y="{$menuSpringY}px"
-        width="{$menuSpringWidth}%"
-        height="4.6%"
-      />
-    </clipPath>
-  </defs>
+<g>
+  <rect {x} {y} {height} width="{$width}px" fill={color} />
+  <text {id} x="0" y="70%" fill="var(--white)">{text}</text>
+</g>
 
 <style>
-	.image-spring {
-		width: 100%;
-		height: 100%;
-		opacity: 10%;
-		position: absolute;
-		top: 0;
-		z-index: -4;
-	}
+  text {
+    font-family: "Poiret One";
+    font-size: 7vw;
+    text-anchor: top;
+    stroke: var(--white);
+  }
 </style>

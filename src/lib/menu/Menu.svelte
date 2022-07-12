@@ -9,7 +9,7 @@
 
 	const menuHeight = 11;
 	const menuOpacity = 95;
-	let menuSpring = spring(menuHeight, { stiffness: 0.05, damping: 0.3 });
+	let menuSpring = spring(menuHeight, { stiffness: 0.05, damping: 0.3, precision: 1});
 	let menuTween = spring(menuOpacity, { stiffness: 0.2, damping: 0.9 });
 
 	function updateMenu() {
@@ -23,10 +23,10 @@
 			setTimeout(async () => {
 				menuSpring.set(menuHeight);
 				isOpen.set(false);
-			}, 600);
+			}, 100);
 			setTimeout(async () => {
 				menuTween.set(menuOpacity);
-			}, 1000);
+			}, 100);
 		}
 	}
 </script>

@@ -35,6 +35,7 @@
 	}
 	.foreground-text {
 		stroke: var(--white);
+    stroke-width: 1;
 	}
 
 	.foreground-text text {

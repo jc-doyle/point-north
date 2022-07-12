@@ -3,7 +3,7 @@
 </script>
 
 <div class="path-svg">
-	<svg class="path" width="50vw" height="60vh" viewBox="0 0 1060 680">
+	<svg class="path" width="80vw" height="60vh" viewBox="0 0 1060 680">
 		<path style="stroke: var(--blue); fill: none;" d={data} />
 	</svg>
 </div>
@@ -18,7 +18,6 @@
 	}
 
 	svg {
-		width: 100vw;
 		height: 50vh;
 		overflow: auto;
 		display: block;
