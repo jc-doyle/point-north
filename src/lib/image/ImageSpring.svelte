@@ -1,5 +1,8 @@
 <script>
-	import { height, width, x, y } from './store.js';
+	import { heightSpring, widthSpring, ySpring, x } from './store.js';
+	import { pSBC } from '$lib/tools/pSBC.js';
+  export let color;
+
 </script>
 
 <div class="image-spring">
@@ -7,10 +10,10 @@
 		<rect
 			class="rectangle"
 			x="{$x}%"
-			y="{$y}px"
-			width="{$width}%"
-			height="{$height}px"
-			fill="var(--black)"
+			y="{$ySpring}px"
+			width="{$widthSpring}%"
+			height="{$heightSpring}px"
+			fill={color}
 		/>
 	</svg>
 </div>
@@ -19,7 +22,7 @@
 	.image-spring {
     width: 100%;
     height: 100%;
-    opacity: 10%;
+    opacity: 100%;
 		position: absolute;
     top: 0;
     z-index: -4;

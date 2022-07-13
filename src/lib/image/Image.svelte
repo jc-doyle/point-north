@@ -1,7 +1,8 @@
 <script>
-	import { height, width, x, y } from './store.js';
+	import { heightSpring, widthSpring, ySpring } from './store.js';
 	export let name;
 	export let i;
+	let enlarged = false;
 
 	function setSpring() {
 		var elem = document.getElementById(`${name}${i}`);
@@ -9,32 +10,39 @@
 		var elemRect = elem.getBoundingClientRect();
 		var containerRect = container.getBoundingClientRect();
 		var heightFromStart = elemRect.top - containerRect.top;
+		var width = elemRect.left - elemRect.right;
 		var clientWidth = document.documentElement.clientWidth;
-    console.log(elem.height)
 		var vw = clientWidth / 100;
 
 		if (clientWidth < 600) {
-			y.set(heightFromStart - 5 * vw);
-			x.set(5);
-			width.set(90);
-			height.set(elem.height + 10 * vw);
+			ySpring.set(heightFromStart - 5 * vw);
+			widthSpring.set(60);
+			heightSpring.set(elem.height + 10 * vw);
 		} else {
-			y.set(heightFromStart - 1.5 * vw);
-			x.set(29);
-			width.set(42);
-			height.set(elem.height + 3 * vw);
+			ySpring.set(heightFromStart - 5 * vw);
+			widthSpring.set(width / clientWidth + 3 * vw);
+			heightSpring.set(elem.height + 10 * vw);
+		}
+	}
+
+	function handleClick() {
+		if (enlarged) {
+			enlarged = false;
+		} else {
+			enlarged = true;
 		}
 	}
 </script>
 
-<div class="image" on:mouseenter={setSpring}>
-	<img id="{name}{i}" alt="{name}{i}" src="/images/{name}/{i}" />
+<div class="image" on:mouseenter={setSpring} on:click={handleClick}>
+	<img class:enlarged id="{name}{i}" alt="{name}{i}" src="/images/{name}/{i}" />
 </div>
 
 <style>
-	.image {
-		width: 100%;
+	.enlarged {
+		width: 98vw;
 	}
+
 	img {
 		position: relative;
 		margin-bottom: 10vw;
@@ -47,6 +55,9 @@
 		img {
 			margin-bottom: 3vw;
 			width: 39vw;
+		}
+		.enlarged {
+			width: 50vw;
 		}
 	}
 </style>

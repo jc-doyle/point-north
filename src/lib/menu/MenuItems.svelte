@@ -74,7 +74,7 @@
 	@media (min-width: 600px) {
 		.menu-svg {
 			left: 42vw;
-			width: 20vw;
+			width: 35vw;
 		}
 	}
 </style>

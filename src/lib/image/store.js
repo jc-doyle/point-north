@@ -1,7 +1,7 @@
 import { spring } from 'svelte/motion';
-import { writable } from 'svelte/store';
+import { writable, derived } from 'svelte/store';
 
-export const height = writable(5);
-export const width = writable(90);
-export const x = writable(5);
-export const y = spring(3, { stiffness: 0.05, damping: 0.3 });
+export const widthSpring = spring(3, { stiffness: 0.05, damping: 0.3 });
+export const heightSpring = spring(3, { stiffness: 0.05, damping: 0.3 });
+export const ySpring = spring(3, { stiffness: 0.05, damping: 0.3 });
+export const x = derived(widthSpring, $widthSpring => (100 - $widthSpring)/2);

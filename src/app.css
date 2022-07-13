@@ -1,6 +1,6 @@
 
 :root {
-	--background: #F5F5F6;
+	--background: #F4F4F4;
 	--white: #FDFDFD;
 	--black: #3F3F3F;
 	--grey: #CFCFCF;
@@ -14,13 +14,16 @@
 body {
   margin: 0;
 	padding: 0;
-  background: var(--white);
+  background: var(--background);
 }
 
 body::before {
   position: absolute
 }
 
+text {
+  font-family: 'Poiret One', serif;
+}
 h1 {
   font-weight: 100;
   font-family: 'Poiret One', serif;
@@ -30,10 +33,8 @@ h1 {
 
 h2 {
   font-family: 'Poiret One', serif;
-  font-weight: 300;
   font-size: 4vh;
   margin: 0;
-  color: var(--black)
 }
 
 h3 {
@@ -48,6 +49,7 @@ p {
   font-family: 'Pontano Sans', sans-serif;
   font-size: 2vh;
   margin: 0;
+  color: var(--white)
 }
 
 #svelte {
@@ -73,6 +75,5 @@ p {
       margin: 0;
     }
     body {
-      background: var(--background);
     }
 	}

@@ -1,4 +1,6 @@
 <script context="module">
+	/* export const prerender = true; */
+
 	export async function load({ params, fetch, session, stuff }) {
 		const url = `../data/${params.id}`;
 		const response = await fetch(url);
@@ -18,35 +20,32 @@
 	import TextSvg from '$lib/svg/TextSvg.svelte';
 	import ImageSpring from '$lib/image/ImageSpring.svelte';
 	import Image from '$lib/image/Image.svelte';
+	import { pSBC } from '$lib/tools/pSBC.js';
 </script>
 
-<div class="container">
-	{#key project}
-		<PathSvg data={project.header} color={project.color} />
-		<section class="header">
-			<svg class="title">
-				<TextSvg text={project.title} id="title-{project.name}" color={project.color} />
-			</svg>
-			<div class="title-details">
-				<h2>{project.date}</h2>
-				<h3>{project.location}</h3>
-			</div>
-		</section>
-		<section class="intro" style:background-color={project.color}>
-			<p>{project.intro}</p>
-		</section>
-		<section id="image-container" class="image-container">
-			<div class="images">
-				{#each project.imagecount as _, i}
-					<a href="/images/{project.name}/{i}">
-						<Image name={project.name} {i} />
-					</a>
-				{/each}
-			</div>
-			<ImageSpring />
-		</section>
-	{/key}
-</div>
+{#key project}
+	<PathSvg data={project.header} color={project.color} />
+	<section class="header">
+		<svg class="title">
+			<TextSvg text={project.title} id="title-{project.name}" color={project.color} />
+		</svg>
+		<div class="title-details">
+			<h2 style:color={pSBC(-0.5, project.color)}>{project.date}</h2>
+			<h3 style:color={pSBC(-0.9, project.color)}>{project.location}</h3>
+		</div>
+	</section>
+	<section class="intro" style:background-color={project.color}>
+		<p>{project.intro}</p>
+	</section>
+	<section id="image-container" class="image-container">
+		<div class="images">
+			{#each project.imagecount as _, i}
+				<Image name={project.name} {i} />
+			{/each}
+		</div>
+		<ImageSpring color={project.color} />
+	</section>
+{/key}
 
 <style>
 	section {
@@ -63,27 +62,41 @@
 	}
 
 	.title {
-		top: 30%;
-		width: 70%;
+		font-size: 18vw;
+		text-anchor: top;
+		stroke: var(--white);
+		top: 25%;
+		width: 80%;
 		height: 40%;
-		left: 15%;
+		left: 8%;
 		position: absolute;
 	}
 
 	.title-details {
+		opacity: 70%;
 		position: relative;
-		top: 59%;
-		left: 15%;
-		width: 60%;
+		top: 54%;
+		left: 8%;
+		width: 20%;
+	}
+
+	h2 {
+		font-size: 5vw;
+	}
+
+	h3 {
+		font-size: 3vw;
 	}
 
 	p {
 		width: inherit;
 		height: inherit;
 		padding: 5vh 8vw;
-		margin: 0;
-		color: var(--white);
 		line-height: 180%;
+	}
+
+	p::first-letter {
+		font-size: 4vh;
 	}
 
 	.image-container {
@@ -99,17 +112,26 @@
 	}
 
 	@media (min-width: 600px) {
-		p {
-			padding: 12vh 30vw;
-		}
 		.header {
 			height: 66vh;
 		}
 		.title {
 			left: 15%;
+			font-size: 8vw;
 		}
 		.title-details {
 			left: 17%;
+		}
+		h2 {
+			font-size: 3vw;
+		}
+		h3 {
+			font-family: 'Poiret One';
+			font-size: 1.2vw;
+			font-weight: 200;
+		}
+		p {
+			padding: 12vh 30vw;
 		}
 		.image-container {
 			padding-top: 8vh;

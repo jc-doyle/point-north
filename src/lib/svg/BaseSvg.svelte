@@ -3,13 +3,19 @@
 	import { spring } from 'svelte/motion';
 	import { isOpen } from '$lib/menu/store.js';
 	let widthSpring = spring(100, { stiffness: 0.03, damping: 0.8, precision: 0.04 });
-  let width = 38;
-  let clientWidth;
+	let width = 38;
+	let innerWidth, innerHeight;
+	let y;
 
-	isOpen.subscribe((o) => {
-    if (clientWidth < 600) {
-      width = 38;
+  onMount(() => {
+    console.log(innerHeight)
+    if (innerWidth < 600) {
+			width = 36;
     }
+  })
+	isOpen.subscribe((o) => {
+		if (innerWidth < 600) {
+		}
 		if (o) {
 			setTimeout(async () => {
 				widthSpring.set(100);
@@ -20,9 +26,18 @@
 			}, 500);
 		}
 	});
+
+	function handleScroll() {
+		if (y > 300) {
+			widthSpring.set(100);
+		} else {
+			widthSpring.set(width);
+		}
+	}
 </script>
 
-<div bind:clientWidth={clientWidth} class="bg-svg">
+<svelte:window bind:innerWidth bind:innerHeight bind:scrollY={y} on:scroll={handleScroll} />
+<div class="bg-svg">
 	<svg width="{$widthSpring}vw" height="100vh">
 		<rect class="header-rect" x="0" y="0" height="100%" width="100%" fill="var(--white)" />
 	</svg>
