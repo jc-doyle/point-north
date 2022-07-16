@@ -2,20 +2,24 @@
 	import { afterUpdate, beforeUpdate, onMount } from 'svelte';
 	import { spring } from 'svelte/motion';
 	import { isOpen } from '$lib/menu/store.js';
+  import { navigating } from '$app/stores'
 	let widthSpring = spring(100, { stiffness: 0.03, damping: 0.8, precision: 0.04 });
 	let width = 38;
 	let innerWidth, innerHeight;
 	let y;
 
   onMount(() => {
-    console.log(innerHeight)
     if (innerWidth < 600) {
 			width = 36;
     }
   })
+  navigating.subscribe(() => {
+    widthSpring.set(100, {stiffness: 0.5})
+    setTimeout(async () => {
+      widthSpring.set(width);
+    }, 600);
+  })
 	isOpen.subscribe((o) => {
-		if (innerWidth < 600) {
-		}
 		if (o) {
 			setTimeout(async () => {
 				widthSpring.set(100);
