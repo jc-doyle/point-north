@@ -1,47 +1,36 @@
 <script>
-	import { isOpen, menuSpringWidth, menuSpringY } from './store.js';
-	import { pageColor, colors } from '../../store.js';
-  import { onDestroy } from 'svelte';
-	export let item;
-	export let height;
-
-	function capitalize(string) {
-		return string.charAt(0).toUpperCase() + string.slice(1);
-	}
-
-	function hoverEnter() {
-		var elem = document.getElementById(`menu-link-${item}`);
-		menuSpringY.set(elem.getBoundingClientRect().top);
-		menuSpringWidth.set(elem.getBoundingClientRect().right - elem.getBoundingClientRect().left+20);
-    const color = $colors.find(pages => pages.name == item).color
-    pageColor.set(color)
-	}
-
-  onDestroy(() => {
-  })
+	export let name;
+	export let href;
 </script>
 
-<g on:mouseenter={hoverEnter}>
-	<text class="background-text" id="menu-link-{item}" x="10" y="{height}%">{capitalize(item)}</text>
-</g>
-<g class="foreground-text" clip-path="url(#clip-menu)">
-	<text x="10" y="{height}%">{capitalize(item)}</text>
-</g>
+<a {href}>
+	<h2>{name}</h2>
+</a>
 
 <style>
-	text {
-		font-family: 'Poiret One';
-		font-size: 5vh;
-	}
-	.foreground-text {
-		stroke: var(--white);
-    stroke-width: 1;
-	}
+  a {
+    cursor: pointer;
+  }
 
-	.foreground-text text {
-		fill: var(--white);
-	}
-	.background-text {
-		fill: #3d3e55;
-	}
+  h2 {
+    cursor: pointer;
+    margin-bottom: 2%;
+    margin-top: 10px;
+    text-decoration: underline;
+    text-decoration-color: var(--white);
+    text-underline-offset: 10px;
+    text-decoration-thickness: 1px;
+    transition: all 0.5s;
+  }
+
+  h2:hover {
+    text-decoration-color: var(--border);
+  }
+
+	@media (min-aspect-ratio: 1/1) {
+    h2 {
+      font-size: 4vh;
+    }
+  }
+
 </style>

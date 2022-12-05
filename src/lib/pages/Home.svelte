@@ -17,7 +17,7 @@
 </script>
 
 <div bind:this={page} in:fade={{ duration: 200, delay: 200 }} out:fade={{ duration: 200 }} class="content">
-	<h1>Boutique Property Developments</h1>
+	<h1>Boutique Property <br/> Developments</h1>
 	<h4><i>est.</i> <b>2013</b></h4>
 	<img alt="cover" src={cover} />
 	<div class="intro">
@@ -40,7 +40,7 @@
 	}
 
 	h4 {
-		margin-top: -8%;
+		margin-top: -24px;
 	}
 
 	p {
@@ -66,7 +66,7 @@
     top: 16%;
     left: 4%;
     width: 92%;
-    transition: opacity 2s ease-in;
+    transition: opacity 1.2s ease-in;
 	}
 
 	.intro {
@@ -85,7 +85,7 @@
 		h1 {
 			background-color: var(--background);
 			transform: translateY(-50%);
-			margin: 0 25%;
+			margin: 0 20%;
 		}
 
 		h4 {

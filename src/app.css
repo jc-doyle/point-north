@@ -6,7 +6,7 @@
 	--border: #CDCDCD;
 	--grey: #E5E5E5;
 	--dark-grey: #B0B0B0;
-	--text-dark: #444444;
+	--text-dark: #555555;
 	--text-darker: #444444;
 	--text-light: #888888;
 }
@@ -104,7 +104,7 @@ a {
 
 @media (min-aspect-ratio: 1/1) {
     h1 {
-      font-size: 3vw;
+      font-size: 5vh;
     }
 
     h2 {

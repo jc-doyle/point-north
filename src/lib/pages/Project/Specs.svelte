@@ -19,8 +19,8 @@
 		font-family: 'Nanum Myeongjo', serif;
 		font-size: 15px;
 		line-height: 250%;
-		font-weight: 300;
-		color: var(--black);
+		font-weight: 100;
+		color: var(--text-dark);
 	}
 
 	@media (min-aspect-ratio: 1/1) {

@@ -1,45 +1,44 @@
 <script>
-	import { isOpen, menuHeight, menuOpacity } from './store.js';
-	import { page } from '$app/stores';
-	import logo from '$lib/menu/logo.svg';
-	import MenuItems from './MenuItems.svelte';
-	import Hamburger from './Hamburger.svelte';
-	import { cubicInOut } from 'svelte/easing';
+	import { isOpen } from './store.js';
 	import { fade } from 'svelte/transition';
+  import { page} from '$app/stores'
+	import logo from '$lib/menu/logo.svg';
+	import MenuLink from './MenuLink.svelte';
+	import Hamburger from './Hamburger.svelte';
 	import { onMount } from 'svelte';
 
-	let y, innerHeight, innerWidth;
-	let heightInPx;
-	let OPACITY = 0;
+	let y;
+	let bar;
 
-	page.subscribe(() => {
-		menuOpacity.set(OPACITY);
+  page.subscribe(() => {
+    if (bar != null) {
+			bar.style = 'border-bottom: 1px solid var(--white)';
+    }
+  })
+
+	isOpen.subscribe(() => {
+		if ($isOpen) {
+		} else {
+		}
 	});
 
 	onMount(() => {
-		let w = document.documentElement.clientWidth;
-		let h = document.documentElement.clientHeight;
-
-		if (w / h < 1) {
-			heightInPx = 65;
-		} else {
-			heightInPx = 100;
-		}
-		menuOpacity.set(getOpacity());
-		menuHeight.set(heightInPx);
-	});
+    if (bar != null) {
+			bar.style = 'border-bottom: 1px solid var(--white)';
+    }
+  });
 
 	function updateMenu() {
 		if (!$isOpen) {
 			/* Open the Menu */
 			isOpen.set(true);
-			menuHeight.set(innerHeight);
-			menuOpacity.set(1);
+			bar.style = 'border-bottom: 1px solid var(--white)';
 		} else {
 			/* Close the Menu */
-			isOpen.set(false);
-			menuHeight.set(heightInPx);
-			menuOpacity.set(0);
+      setTimeout(async () => {
+			  isOpen.set(false);
+      }, 500)
+			bar.style = 'border-bottom: 1px solid var(--grey)';
 		}
 	}
 
@@ -47,54 +46,47 @@
 		if ($isOpen) {
 			/* Close the Menu */
 			isOpen.set(false);
-			menuHeight.set(heightInPx);
-		}
-	}
-
-	function getOpacity() {
-		if (y < 25) {
-			return OPACITY;
-		} else {
-			return 1;
 		}
 	}
 
 	function handleScroll() {
-		menuHeight.set(heightInPx);
-		menuOpacity.set(getOpacity());
-	}
+    if (y > 25 && $page.route.id.includes('projects/')) {
+			bar.style = 'border-bottom: 1px solid var(--grey)';
+    } else {
+			bar.style = 'border-bottom: 1px solid var(--white)';
+    }
+  }
 </script>
 
-<svelte:window bind:innerHeight bind:innerWidth bind:scrollY={y} on:scroll={handleScroll} />
+<svelte:window bind:scrollY={y} on:scroll={handleScroll} />
 <div class="menu">
-	<div class="menu-header">
+	<div class="menu-header" bind:this={bar}>
 		<a on:click={goHome} href="/">
 			<img class="menu-logo" src={logo} alt="Point North" />
 		</a>
-
 		<div class="hamburger" on:click={updateMenu} on:keydown={updateMenu}>
 			<Hamburger />
 		</div>
 	</div>
-	<div style:opacity={$menuOpacity} class="menu-bg">
-		<svg class="menu-bar" height="{$menuHeight}px">
-			<rect x="0" y="0" width="100%" height="100%" />
-		</svg>
-	</div>
-
 	{#if $isOpen}
-		<div
-			in:fade={{ duration: 200, easing: cubicInOut }}
-			out:fade={{ duration: 50, easing: cubicInOut }}
-			on:click={updateMenu}
-			on:keydown={updateMenu}
-		>
-			<MenuItems />
+		<div transition:fade class="menu-contents" on:click={updateMenu} on:keydown={updateMenu}>
+			<MenuLink href="/" name="Home" />
+			<div class="projects">
+				<h3>Projects</h3>
+				<MenuLink href="/projects/jameson" name="Jameson" />
+				<MenuLink href="/projects/talbragar" name="Talbragar" />
+				<MenuLink href="/projects/cawdor" name="Cawdor" />
+			</div>
 		</div>
 	{/if}
 </div>
 
 <style>
+	h3 {
+		text-align: center;
+		font-size: 2vh;
+	}
+
 	.menu {
 		height: 100vh;
 		position: absolute;
@@ -103,24 +95,29 @@
 
 	.menu-header {
 		position: fixed;
-		justify-content: space-between;
+		padding: 0 5vw;
+		width: 90%;
 		z-index: 2;
 		height: 70px;
-		width: 90vw;
-		left: 5vw;
 		top: 0;
 		display: flex;
 		align-items: center;
+		justify-content: space-between;
+		background-color: var(--white);
 	}
 
-	.menu-bar {
+	.menu-contents {
+    overflow: hidden;
 		position: fixed;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-evenly;
 		top: 0;
-		width: 100%;
-	}
-
-	rect {
-		fill: var(--white);
+		height: 40vh;
+		width: 80vw;
+		padding: 30vh 10vw;
+		background-color: var(--white);
+		transition: all 1s;
 	}
 
 	.hamburger {
@@ -142,9 +139,9 @@
 			width: 15vh;
 		}
 		.menu-header {
-			height: 100px;
-			width: 80vw;
-			left: 10vw;
+			height: 80px;
+			padding: 0 10%;
+			width: 80%;
 		}
 	}
 </style>
