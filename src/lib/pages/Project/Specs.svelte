@@ -3,30 +3,10 @@
 </script>
 
 <div class="specs">
-	<div class="spec">
-		<li class="label">Location</li>
-		<li class="value">{data.location}</li>
-	</div>
-	<div class="spec">
-		<li class="label">Units Built</li>
 		<li class="value">{data.units}</li>
-	</div>
-	<div class="spec">
-		<li class="label">Land Size</li>
-		<li class="value">{data.landsize}m<sup>2</sup></li>
-	</div>
-	<div class="spec">
-		<li class="label">Property Size(s)</li>
 		<li class="value">{data.unitsize}m<sup>2</sup></li>
-	</div>
-	<div class="spec">
-		<li class="label">Client Build Options</li>
 		<li class="value">{data.options}</li>
-	</div>
-	<div class="spec">
-		<li class="label">Construction Time</li>
 		<li class="value">{data.period}</li>
-	</div>
 </div>
 
 <style>

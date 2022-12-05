@@ -6,8 +6,9 @@
 	export let data;
 </script>
 
-<div in:fade={{ duration: 400, delay: 200 }} out:fade={{ duration: 200 }} class="content">
+<div in:fade={{ duration: 400, delay: 500 }} out:fade={{ duration: 300 }} class="content">
 	<h1>Projects</h1>
+  <h3>Our Developments</h3>
 	<div class="links">
 		{#each data.projects as p, i}
 			<ProjectLink data={p} delay={200 + i * 300} />
@@ -23,7 +24,14 @@
 		background-color: var(--background);
 		transform: translateY(-50%);
 		padding: 0 5%;
+    font-size: 4.1vh;
 	}
+
+  h3 {
+    font-size: 16px;
+    margin-top: -2vh ;
+    margin-bottom: 2vh;
+  }
 
 	.content {
 		border: 1px solid var(--border);
@@ -34,7 +42,7 @@
 		justify-content: space-between;
 		width: 90%;
 		left: 4.8%;
-		top: 18%;
+		top: 14%;
 	}
 
 	.links {
@@ -46,7 +54,7 @@
 	}
 
 	.buttons {
-		margin-top: 3vh;
+		margin-top: 8vh;
 		margin-bottom: 3vh;
 	}
 

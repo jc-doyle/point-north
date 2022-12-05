@@ -4,6 +4,7 @@
 
 	import cover from '$lib/assets/images/cover.jpg';
 	import { fade } from 'svelte/transition';
+	import Contact from '$lib/contact/Contact.svelte';
 
 	export let data;
 </script>
@@ -18,10 +19,11 @@
 	</div>
 	<Tilde />
 	<div class="buttons">
-		<Button href="contact" text="Contact" />
+		<Button href=" " text="Contact" />
 		<Button href="projects" text="Projects" />
 	</div>
 </div>
+  <Contact />
 
 <style>
 	h1 {
@@ -43,7 +45,7 @@
 		height: 20vh;
 		object-fit: cover;
 		margin: 10% 0;
-    border: 1px solid var(--black);
+    border: 1px solid var(--white);
 	}
 
 	.content {
@@ -53,9 +55,8 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: space-between;
-		width: 90%;
-		left: 5%;
-		top: 18%;
+    margin: 16vh 4vw 2vh 4vw;
+    height: 82vh;
 	}
 
 	.intro {
@@ -90,9 +91,8 @@
 		}
 
 		.content {
-			width: 50%;
-			left: 25%;
-			top: 18%;
+      margin: 17vh 25vw 4vh 25vw;
+      height: 79vh;
 		}
 
 		img {

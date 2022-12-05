@@ -23,9 +23,7 @@
 
   function handleScroll() {
     let MARGIN = document.documentElement.clientHeight * 0.82;
-    console.log(y);
     let pos = getOffset(img);
-    console.log(pos);
 
     if (y + MARGIN > pos.y && img.style.opacity != 1) {
       img.style.opacity = 1;
@@ -64,7 +62,6 @@
 		align-items: center;
 		display: flex;
 		position: relative;
-		margin-bottom: 8%;
 		left: 50%;
 		transform: translateX(-50%);
 		z-index: 1;
@@ -72,18 +69,20 @@
 
 	img {
 		cursor: pointer;
+    opacity: 0;
+    width: 100%;
 		object-fit: cover;
-    border: 1px solid var(--black);
+    border: 1px solid var(--white);
 		transition: opacity 1s ease-in, border 0.5s;
 	}
 
   img:hover {
     box-shadow: 0 0 5px var(--grey);
+    border: 1px solid var(--black);
   }
 
 	@media (min-aspect-ratio: 1/1) {
 		img {
-			margin-bottom: 8vh;
 		}
 	}
 </style>

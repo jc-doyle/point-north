@@ -20,11 +20,13 @@
 		align-items: center;
 		justify-content: center;
 		position: relative;
+    gap: 2vh;
 	}
 
 	@media (min-aspect-ratio: 1/1) {
 		.images {
 			display: grid;
+      gap: 2vw;
 			grid-template-columns: 1fr 1fr;
 		}
 	}

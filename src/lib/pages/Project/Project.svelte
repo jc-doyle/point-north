@@ -7,8 +7,7 @@
 	export let data;
 </script>
 
-<div in:fade={{ duration: 200, delay: 200 }} out:fade={{ duration: 200 }} class="container">
-	<div class="content">
+<div in:fade={{ duration: 400, delay: 500 }} out:fade={{ duration: 300 }} class="content">
 		<h1>{data.title}</h1>
 		<h3>{data.location}</h3>
 		<div class="specs">
@@ -17,24 +16,25 @@
 		<img alt="cover" src="/images/{data.name}/header.jpg" />
 		<div class="intro">
 			<p>{data.intro}</p>
+			<p>{data.tagline}</p>
 		</div>
 		<Tilde />
 		<div class="images">
 			<Gallery {data} />
 		</div>
-		<Tilde />
 		<div class="downloads">
 			<Downloads {data} />
 		</div>
+		<Tilde />
 		<div class="buttons">
 			<Button href=" " text="Home" />
 			<Button href="projects" text="Projects" />
 		</div>
-	</div>
 </div>
 
 <style>
 	h1 {
+    font-size: 4.1vh;
 		background-color: var(--background);
 		transform: translateY(-50%);
 		padding: 0 5%;
@@ -49,21 +49,29 @@
 		width: 90%;
 		height: 34vh;
 		object-fit: cover;
-		margin: 6vh 0;
-		border: 1px solid var(--black);
+		margin: 6vh 0 4vh 0;
+		border: 1px solid var(--white);
 	}
 
+  p {
+    margin-bottom: 5vh;
+  }
+  
+  .container {
+    position: absolute;
+  }
+
 	.content {
+    margin: 18vh 5vw;
 		background-color: var(--white);
 		border: 1px solid var(--border);
-		position: absolute;
+		position: relative;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: space-between;
 		width: 90%;
-		left: 5%;
-		top: 18%;
+    height: inherit;
 	}
 
 	.specs {
@@ -73,10 +81,10 @@
 
 	.intro {
 		width: 80%;
-		margin-bottom: 6vh;
 	}
 
 	.images {
+    width: 90%;
 		margin: 4vh 0 2vh 0;
 	}
 
@@ -91,11 +99,7 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		margin: 2vh;
-	}
-
-	.footer {
-		height: 10%;
+		margin: 6vh 0 2vh 0;
 	}
 
 	@media (min-aspect-ratio: 1/1) {
@@ -107,27 +111,33 @@
 		img {
 			width: 110%;
 			height: 34vh;
-			margin: 7vh 0 9vh 0;
+		  margin: 7vh 0 7vh 0;
 		}
 
 		.content {
+      margin: 18vh 25vw;
 			width: 50%;
-			left: 25%;
-			top: 18%;
 		}
 
 		.intro {
 			width: 48%;
-			margin-bottom: 8vh;
 		}
 
 		.images {
 			margin: 10vh 0 0 0;
+      width: 110%;
 		}
+
+    .downloads {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 6vh 0 6vh 0;
+    }
 
 		.buttons {
 			width: 48%;
-			margin-top: 3vh;
+			margin-top: 4vh;
 			margin-bottom: 3vh;
 		}
 	}

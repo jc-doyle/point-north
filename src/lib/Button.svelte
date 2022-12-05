@@ -1,12 +1,24 @@
 <script>
 	export let href;
 	export let text;
+  import { active } from '$lib/contact/store.js';
+
+  function handleClick() {
+    if (text === 'Contact' || text === 'Back') {
+      if ($active == 1) {
+        active.set(-1);
+      } else {
+        active.set(1)
+      }
+    }
+  }
 </script>
 
-<a href="/{href}" data-sveltekit-noscroll>{text}</a>
+<a on:click={handleClick} href="/{href}" data-sveltekit-noscroll>{text}</a>
 
 <style>
 	a {
+    font-family: 'Nanum Myeongjo', serif;
 		padding: 1vh 4vw;
 		margin: 1%;
 		transition: border 1s, font-style 0.5s;

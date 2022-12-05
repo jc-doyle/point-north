@@ -1,5 +1,5 @@
 <script>
-	import { active, opacity } from './store.js';
+	import { active } from './store.js';
 	import { fade } from 'svelte/transition';
 
 	export let name;

@@ -5,7 +5,7 @@
 	--black: #3F3F3F;
 	--border: #CDCDCD;
 	--grey: #E5E5E5;
-	--dark-grey: #B2B2B2;
+	--dark-grey: #B0B0B0;
 	--text-dark: #444444;
 	--text-darker: #444444;
 	--text-light: #888888;
@@ -63,7 +63,7 @@ h4 {
 }
 
 p {
-  font-family: 'Assistant', serif;
+  font-family: 'Nanum Myeongjo', serif;
   text-align: center;
   opacity: 80%;
   margin: 0;
@@ -81,7 +81,7 @@ li {
 }
 
 a {
-  font-family: 'Assistant', serif;
+  font-family: 'Nanum Myeongjo', serif;
   font-style: normal;
   font-size: 18px;
   text-align: center;
