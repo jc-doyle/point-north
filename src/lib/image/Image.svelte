@@ -8,7 +8,10 @@
 	let img;
 	let y;
 
-  onMount(() => {img.style.opacity = 0})
+  onMount(() => {
+    img.style.opacity = 0
+    handleScroll()
+  })
 
   function getOffset(el) {
     const rect = el.getBoundingClientRect();

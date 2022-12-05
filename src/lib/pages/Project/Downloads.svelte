@@ -4,24 +4,23 @@
 
 {#each data.files as f}
 	<li class="item">
-		<a href="/downloads/{data.name}/{f.file}">{f.name} <i>(.pdf)</i></a>
+		<a href="/downloads/{data.name}/{f.file}">{f.name}</a>
 	</li>
 {/each}
 
 <style>
   li {
-    list-style-type: circle;
-    list-style-position: outside;
+    list-style: none;
   }
 
-  i {
-    color: var(--grey);
-  }
 	a {
-		font-family: 'Raleway', serif;
-		font-size: 1.8vh;
+    font-family: 'Nanum Myeongjo', serif;
+    text-decoration: underline;
+    text-underline-offset: 6px;
+    text-decoration-color: var(--grey);
+		font-size: 17px;
 		line-height: 230%;
-		font-weight: 600;
+		font-weight: 300;
 		color: var(--black);
     margin-left: -2%;
 	}

@@ -4,5 +4,5 @@
 </script>
 
 {#key data}
-<Project {data} />
+	<Project {data} />
 {/key}

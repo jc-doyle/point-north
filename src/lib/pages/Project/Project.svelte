@@ -1,33 +1,35 @@
 <script>
 	import Button from '$lib/Button.svelte';
 	import Gallery from '$lib/image/Gallery.svelte';
-	import Specs from './Specs.svelte';
 	import Downloads from './Downloads.svelte';
 	import { fade } from 'svelte/transition';
 	import Tilde from '../../Tilde.svelte';
 	export let data;
 </script>
 
-<div in:fade={{ duration: 200, delay: 200 }} out:fade={{ duration: 200 }} class="content">
-	<h1>{data.title}</h1>
-	<h3>{data.location}</h3>
-	<div class="specs">
-		<h4><b>{data.date}</b></h4>
-		<h4><b>{data.units}</b></h4>
-	</div>
-	<img alt="cover" src="/images/{data.name}/header.jpg" />
-	<div class="intro">
-		<p>{data.intro}</p>
-	</div>
-	<Tilde />
-	<div class="images">
-		<Gallery {data} />
-	</div>
-	<h2>Downloads</h2>
-	<Downloads {data} />
-	<div class="buttons">
-		<Button href=" " text="Home" />
-		<Button href="projects" text="Projects" />
+<div in:fade={{ duration: 200, delay: 200 }} out:fade={{ duration: 200 }} class="container">
+	<div class="content">
+		<h1>{data.title}</h1>
+		<h3>{data.location}</h3>
+		<div class="specs">
+			<h4><b>{data.date}</b></h4>
+		</div>
+		<img alt="cover" src="/images/{data.name}/header.jpg" />
+		<div class="intro">
+			<p>{data.intro}</p>
+		</div>
+		<Tilde />
+		<div class="images">
+			<Gallery {data} />
+		</div>
+		<Tilde />
+		<div class="downloads">
+			<Downloads {data} />
+		</div>
+		<div class="buttons">
+			<Button href=" " text="Home" />
+			<Button href="projects" text="Projects" />
+		</div>
 	</div>
 </div>
 
@@ -64,9 +66,10 @@
 		top: 18%;
 	}
 
-  .specs {
-    display: flex;
-  }
+	.specs {
+		display: flex;
+		align-items: center;
+	}
 
 	.intro {
 		width: 80%;
@@ -81,8 +84,18 @@
 		display: flex;
 		width: 80%;
 		justify-content: space-between;
-		margin-top: 5vh;
-		margin-bottom: 4vh;
+		margin: 2vh 0;
+	}
+
+	.downloads {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin: 2vh;
+	}
+
+	.footer {
+		height: 10%;
 	}
 
 	@media (min-aspect-ratio: 1/1) {
@@ -109,12 +122,12 @@
 		}
 
 		.images {
-			margin: 10vh 0;
+			margin: 10vh 0 0 0;
 		}
 
 		.buttons {
 			width: 48%;
-			margin-top: 5vh;
+			margin-top: 3vh;
 			margin-bottom: 3vh;
 		}
 	}
