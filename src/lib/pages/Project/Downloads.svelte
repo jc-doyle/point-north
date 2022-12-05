@@ -18,10 +18,15 @@
     text-decoration: underline;
     text-underline-offset: 6px;
     text-decoration-color: var(--grey);
-		font-size: 17px;
-		line-height: 230%;
+		font-size: 15px;
+		line-height: 250%;
 		font-weight: 300;
 		color: var(--black);
-    margin-left: -2%;
 	}
+
+	@media (min-aspect-ratio: 1/1) {
+    a {
+      font-size: 15px;
+    }
+  }
 </style>

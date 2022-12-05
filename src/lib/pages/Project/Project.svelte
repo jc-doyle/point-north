@@ -2,6 +2,7 @@
 	import Button from '$lib/Button.svelte';
 	import Gallery from '$lib/image/Gallery.svelte';
 	import Downloads from './Downloads.svelte';
+	import Specs from './Specs.svelte';
 	import { fade } from 'svelte/transition';
 	import Tilde from '../../Tilde.svelte';
 	export let data;
@@ -10,7 +11,7 @@
 <div in:fade={{ duration: 400, delay: 500 }} out:fade={{ duration: 300 }} class="content">
 		<h1>{data.title}</h1>
 		<h3>{data.location}</h3>
-		<div class="specs">
+		<div class="date">
 			<h4><b>{data.date}</b></h4>
 		</div>
 		<img alt="cover" src="/images/{data.name}/header.jpg" />
@@ -22,10 +23,13 @@
 		<div class="images">
 			<Gallery {data} />
 		</div>
+		<div class="specs">
+			<Specs {data} />
+		</div>
+		<Tilde />
 		<div class="downloads">
 			<Downloads {data} />
 		</div>
-		<Tilde />
 		<div class="buttons">
 			<Button href=" " text="Home" />
 			<Button href="projects" text="Projects" />
@@ -95,7 +99,14 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		margin: 6vh 0 2vh 0;
+		margin: 1vh 0 4vh 0;
+	}
+
+	.specs {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin: 4vh 0 2vh 0;
 	}
 
 	@media (min-aspect-ratio: 1/1) {
@@ -128,7 +139,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin: 6vh 0 6vh 0;
+      margin: 2vh 0 2vh 0;
     }
 
 		.buttons {

@@ -14,7 +14,7 @@ const projects = [
   {
     name: 'cawdor',
     title: 'Cawdor',
-    date: '2020',
+    date: '2022',
     location: 'Hurlingham, Johannesburg',
   },
 ];

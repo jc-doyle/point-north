@@ -68,7 +68,7 @@
 	}
 
 	img {
-		cursor: pointer;
+		cursor: zoom-in;
     opacity: 0;
     width: 100%;
 		object-fit: cover;

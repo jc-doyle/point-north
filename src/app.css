@@ -32,6 +32,7 @@ h1 {
   text-align: center;
   color: var(--black);
   font-weight: 100;
+  cursor: default;
 }
 
 h2 {
@@ -42,6 +43,7 @@ h2 {
   text-align: center;
   color: var(--black);
   margin: 0;
+  cursor: default;
 }
 
 h3 {
@@ -51,6 +53,7 @@ h3 {
   font-style: italic;
   color: var(--text-light);
   margin: 0;
+  cursor: default;
 }
 
 h4 {
@@ -60,6 +63,7 @@ h4 {
   font-weight: 100;
   color: var(--black);
   margin: 0;
+  cursor: default;
 }
 
 p {
@@ -70,6 +74,7 @@ p {
   font-size: 2vh;
   line-height: 120%;
   color: var(--black);
+  cursor: default;
 }
 
 li {
@@ -78,6 +83,7 @@ li {
   font-size: 1.8vh;
   list-style: none;
   color: var(--black);
+  cursor: default;
 }
 
 a {

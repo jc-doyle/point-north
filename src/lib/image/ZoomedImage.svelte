@@ -28,6 +28,7 @@
 
 <style>
 	.bg {
+    cursor: zoom-out;
 		position: fixed;
 		width: 100vw;
 		height: 100vh;
@@ -36,10 +37,10 @@
 		background-color: rgba(255, 255, 255, 0.6);
 		backdrop-filter: blur(10px);
 		z-index: 10;
-    cursor: pointer;
 	}
 
 	img {
+    cursor: zoom-out;
 		position: fixed;
 		width: 100vw;
 		top: 50%;

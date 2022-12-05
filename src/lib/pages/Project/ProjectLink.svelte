@@ -1,4 +1,5 @@
 <script>
+	import { onMount } from 'svelte';
 	import { cubicIn, cubicInOut } from 'svelte/easing';
 	import { tweened } from 'svelte/motion';
 	import { fly } from 'svelte/transition';
@@ -8,18 +9,35 @@
 
 	let imageOpacity = tweened(1, { delay: 0, duration: 500, easing: cubicInOut });
 	let nameOpacity = tweened(0, { delay: 200, duration: 300, easing: cubicIn });
-  let thumb;
+	let thumb;
+
+	onMount(() => {
+		let w = document.documentElement.clientWidth;
+		let h = document.documentElement.clientHeight;
+		let timeout = 1200 + delay;
+		if (w / h < 1) {
+			setTimeout(async () => handleMobile(), timeout);
+		}
+	});
+
+	function handleMobile() {
+		imageOpacity.set(0.05);
+		nameOpacity.set(1);
+		thumb.style.border = '1px solid var(--border)';
+	}
 
 	function handleEnter() {
 		imageOpacity.set(0.03);
 		nameOpacity.set(1);
-    thumb.style.border = "1px solid var(--black)"
+    if (thumb != null) {
+		  thumb.style.border = '1px solid var(--border)';
+    }
 	}
 
 	function handleExit() {
 		imageOpacity.set(1);
 		nameOpacity.set(0);
-    thumb.style.border = "1px solid var(--white)"
+		thumb.style.border = '1px solid var(--white)';
 	}
 </script>
 
@@ -29,8 +47,8 @@
 		<line x1="0" y1="0" x2="0" y2="100" stroke="var(--border)" />
 	</svg>
 	<a href="/projects/{data.name}" on:mouseenter={handleEnter} on:mouseleave={handleExit}>
-		<div bind:this={thumb} class="thumb" >
-			<img  style:opacity={$imageOpacity} src="/thumbnails/{data.name}.jpg" alt={data.name} />
+		<div bind:this={thumb} class="thumb">
+			<img style:opacity={$imageOpacity} src="/thumbnails/{data.name}.jpg" alt={data.name} />
 			<h4 style:opacity={$nameOpacity} class="name">{data.title}</h4>
 		</div>
 	</a>
@@ -39,6 +57,7 @@
 <style>
 	h4 {
 		font-size: 16px;
+    cursor: pointer;
 	}
 
 	img {
