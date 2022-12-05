@@ -1,15 +1,22 @@
 <script>
+	import { fade } from 'svelte/transition';
+  import { onMount } from 'svelte';
+
 	import Button from '$lib/Button.svelte';
 	import Tilde from '$lib/Tilde.svelte';
-
-	import cover from '$lib/assets/images/cover.jpg';
-	import { fade } from 'svelte/transition';
 	import Contact from '$lib/contact/Contact.svelte';
+	import cover from '$lib/assets/images/cover.jpg';
 
 	export let data;
+  let page;
+
+  onMount(() => {
+    page.style.opacity = 1;
+  })
+
 </script>
 
-<div in:fade={{ duration: 200, delay: 200 }} out:fade={{ duration: 200 }} class="content">
+<div bind:this={page} in:fade={{ duration: 200, delay: 200 }} out:fade={{ duration: 200 }} class="content">
 	<h1>Boutique Property Developments</h1>
 	<h4><i>est.</i> <b>2019</b></h4>
 	<img alt="cover" src={cover} />
@@ -49,6 +56,7 @@
 	}
 
 	.content {
+    opacity: 0;
 		position: absolute;
 		border: 1px solid var(--border);
 		display: flex;
@@ -57,6 +65,7 @@
 		justify-content: space-between;
     margin: 16vh 4vw 2vh 4vw;
     height: 82vh;
+    transition: opacity 2s ease;
 	}
 
 	.intro {

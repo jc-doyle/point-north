@@ -27,9 +27,9 @@
 </script>
 
 <svg width="27" height="27" viewBox="0 0 27 27" class="open-icon">
-	<line y1="1" x2={$slowTweenClosed * 27} y2="1" stroke="#3F3F3F" stroke-width="2" />
-	<line y1="13" x2={$fastTweenClosed * 27} y2="13" stroke="#3F3F3F" stroke-width="2" />
-	<line y1="26" x2={$slowTweenClosed * 27} y2="26" stroke="#3F3F3F" stroke-width="2" />
+	<line y1="1" x2={$slowTweenClosed * 27} y2="1" stroke="var(--black)" stroke-width="1" />
+	<line y1="13" x2={$fastTweenClosed * 27} y2="13" stroke="var(--black)" stroke-width="1" />
+	<line y1="26" x2={$slowTweenClosed * 27} y2="26" stroke="var(--black)" stroke-width="1" />
 </svg>
 <svg
 	width="27"

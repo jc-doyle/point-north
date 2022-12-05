@@ -2,7 +2,13 @@
 	export let href;
 	export let text;
   import { active } from '$lib/contact/store.js';
+  import { onMount } from 'svelte';
 
+  onMount(() => {
+    if (href == " ") {
+      href = "";
+    }
+  })
   function handleClick() {
     if (text === 'Contact' || text === 'Back') {
       if ($active == 1) {
