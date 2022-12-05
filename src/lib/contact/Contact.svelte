@@ -1,7 +1,7 @@
 <script>
 	import { active } from './store.js';
 	import { fade } from 'svelte/transition';
-	import Button from '$lib/Button.svelte';
+	import Close from './Close.svelte';
 
 	active.subscribe(() => {});
 
@@ -28,7 +28,7 @@
 				<a href="tel:+27823721600">082 470 1052</a>
 				<a href="mailto:ant.doyle@telkomsa.net">ant.doyle@telkomsa.net</a>
 				<div class="button">
-					<Button href="/" text="Back" />
+					<Close href="/" text="Back" />
 				</div>
 			</div>
 		</div>

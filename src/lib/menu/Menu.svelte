@@ -90,7 +90,7 @@
 	.menu {
 		height: 100vh;
 		position: absolute;
-		z-index: 3;
+		z-index: 6;
 	}
 
 	.menu-header {

@@ -10,12 +10,14 @@
 	let imageOpacity = tweened(1, { delay: 0, duration: 500, easing: cubicInOut });
 	let nameOpacity = tweened(0, { delay: 200, duration: 300, easing: cubicIn });
 	let thumb;
+	let mobile = false;
 
 	onMount(() => {
 		let w = document.documentElement.clientWidth;
 		let h = document.documentElement.clientHeight;
 		let timeout = 1200 + delay;
 		if (w / h < 1) {
+			mobile = true;
 			setTimeout(async () => handleMobile(), timeout);
 		}
 	});
@@ -29,15 +31,17 @@
 	function handleEnter() {
 		imageOpacity.set(0.03);
 		nameOpacity.set(1);
-    if (thumb != null) {
-		  thumb.style.border = '1px solid var(--border)';
-    }
+		if (thumb != null) {
+			thumb.style.border = '1px solid var(--border)';
+		}
 	}
 
 	function handleExit() {
-		imageOpacity.set(1);
-		nameOpacity.set(0);
-		thumb.style.border = '1px solid var(--white)';
+		if (!mobile) {
+			imageOpacity.set(1);
+			nameOpacity.set(0);
+			thumb.style.border = '1px solid var(--white)';
+		}
 	}
 </script>
 
@@ -57,7 +61,7 @@
 <style>
 	h4 {
 		font-size: 16px;
-    cursor: pointer;
+		cursor: pointer;
 	}
 
 	img {
