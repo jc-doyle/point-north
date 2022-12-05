@@ -47,9 +47,9 @@
 
 	img {
 		width: 90%;
-		height: 34vh;
+		height: 24vh;
 		object-fit: cover;
-		margin: 6vh 0 4vh 0;
+		margin: 6vh 0 8vh 0;
 		border: 1px solid var(--white);
 	}
 
@@ -57,12 +57,8 @@
     margin-bottom: 5vh;
   }
   
-  .container {
-    position: absolute;
-  }
-
 	.content {
-    margin: 18vh 5vw;
+    margin: 14vh 5vw 3vh 5vw;
 		background-color: var(--white);
 		border: 1px solid var(--border);
 		position: relative;

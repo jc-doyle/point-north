@@ -18,7 +18,7 @@
 
 <div bind:this={page} in:fade={{ duration: 200, delay: 200 }} out:fade={{ duration: 200 }} class="content">
 	<h1>Boutique Property Developments</h1>
-	<h4><i>est.</i> <b>2019</b></h4>
+	<h4><i>est.</i> <b>2013</b></h4>
 	<img alt="cover" src={cover} />
 	<div class="intro">
 		<p>{data.intro.first}</p>
@@ -63,9 +63,10 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: space-between;
-    margin: 16vh 4vw 2vh 4vw;
-    height: 82vh;
-    transition: opacity 2s ease;
+    top: 16%;
+    left: 4%;
+    width: 92%;
+    transition: opacity 2s ease-in;
 	}
 
 	.intro {
@@ -100,8 +101,9 @@
 		}
 
 		.content {
-      margin: 17vh 25vw 4vh 25vw;
-      height: 79vh;
+      top: 17%;
+      left: 25%;
+      width: 50%;
 		}
 
 		img {

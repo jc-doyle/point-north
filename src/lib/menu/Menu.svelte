@@ -10,7 +10,7 @@
 
 	let y, innerHeight, innerWidth;
 	let heightInPx;
-	let OPACITY = 0.8;
+	let OPACITY = 0;
 
 	page.subscribe(() => {
 		menuOpacity.set(OPACITY);
@@ -21,7 +21,7 @@
 		let h = document.documentElement.clientHeight;
 
 		if (w / h < 1) {
-			heightInPx = 70;
+			heightInPx = 65;
 		} else {
 			heightInPx = 100;
 		}
@@ -125,8 +125,8 @@
 
 	.hamburger {
 		z-index: inherit;
-		width: 2.8vh;
-		height: 2.8vh;
+		width: 2.5vh;
+		height: 2.5vh;
 		padding: 2vh;
 		cursor: pointer;
 	}

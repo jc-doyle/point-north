@@ -5,7 +5,7 @@
 <div class="content">
   <div class="error-svg">
     <svg class="error" width="60%" height="100%">
-      <h1 text="Error" id="error-not-found" color="#CC7575" />
+      <h1 id="error-not-found" color="#CC7575" >Error</h1>
     </svg>
   </div>
   <div class="error-text">
