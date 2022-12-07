@@ -1,7 +1,7 @@
 <script>
 	import { isOpen } from './store.js';
 	import { fade } from 'svelte/transition';
-  import { page} from '$app/stores'
+	import { page } from '$app/stores';
 	import logo from '$lib/menu/logo.svg';
 	import MenuLink from './MenuLink.svelte';
 	import Hamburger from './Hamburger.svelte';
@@ -10,11 +10,11 @@
 	let y;
 	let bar;
 
-  page.subscribe(() => {
-    if (bar != null) {
+	page.subscribe(() => {
+		if (bar != null) {
 			bar.style = 'border-bottom: 1px solid var(--white)';
-    }
-  })
+		}
+	});
 
 	isOpen.subscribe(() => {
 		if ($isOpen) {
@@ -23,10 +23,10 @@
 	});
 
 	onMount(() => {
-    if (bar != null) {
+		if (bar != null) {
 			bar.style = 'border-bottom: 1px solid var(--white)';
-    }
-  });
+		}
+	});
 
 	function updateMenu() {
 		if (!$isOpen) {
@@ -35,9 +35,9 @@
 			bar.style = 'border-bottom: 1px solid var(--white)';
 		} else {
 			/* Close the Menu */
-      setTimeout(async () => {
-			  isOpen.set(false);
-      }, 500)
+			setTimeout(async () => {
+				isOpen.set(false);
+			}, 500);
 			bar.style = 'border-bottom: 1px solid var(--grey)';
 		}
 	}
@@ -50,12 +50,12 @@
 	}
 
 	function handleScroll() {
-    if (y > 25 && $page.route.id.includes('projects/')) {
+		if (y > 25 && $page.route.id.includes('projects/')) {
 			bar.style = 'border-bottom: 1px solid var(--grey)';
-    } else {
+		} else {
 			bar.style = 'border-bottom: 1px solid var(--white)';
-    }
-  }
+		}
+	}
 </script>
 
 <svelte:window bind:scrollY={y} on:scroll={handleScroll} />
@@ -107,7 +107,7 @@
 	}
 
 	.menu-contents {
-    overflow: hidden;
+		overflow: hidden;
 		position: fixed;
 		display: flex;
 		flex-direction: column;
@@ -130,14 +130,15 @@
 
 	.menu-logo {
 		z-index: inherit;
-		width: 12vh;
+		height: 35px;
 	}
 
 	@media (min-aspect-ratio: 1/1) {
 		.menu-logo {
 			left: 25%;
-			width: 15vh;
+			height: 50px;
 		}
+
 		.menu-header {
 			height: 80px;
 			padding: 0 10%;

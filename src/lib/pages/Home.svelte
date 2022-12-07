@@ -107,9 +107,9 @@
 		}
 
 		img {
-			width: 110%;
-			height: 27vh;
-			margin: 5% 0 6% 0;
+			width: 130%;
+			height: 32vh;
+			margin: 3% 0 4% 0;
 		}
 
 		.buttons {
