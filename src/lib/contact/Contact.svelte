@@ -25,7 +25,7 @@
 					<h1>Anthony Doyle</h1>
 					<h2>Managing Director</h2>
 				</div>
-				<a href="tel:+27823721600">082 470 1052</a>
+				<a href="tel:+27823721600">+27 82 372 1600</a>
 				<a href="mailto:ant.doyle@telkomsa.net">ant.doyle@telkomsa.net</a>
 				<div class="button">
 					<Close href="/" text="Back" />
