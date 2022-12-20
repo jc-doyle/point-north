@@ -31,11 +31,6 @@ const content = `
   <lastmod>2022-12-20T08:54:43+00:00</lastmod>
   <priority>0.64</priority>
 </url>
-<url>
-  <loc>https://pointnorth.co.za/downloads/jameson/floor-plan.pdf</loc>
-  <lastmod>2022-12-08T17:37:11+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
 </urlset>
 `.trim()
 
